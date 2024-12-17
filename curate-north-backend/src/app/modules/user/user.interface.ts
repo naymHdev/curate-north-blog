@@ -5,6 +5,7 @@ export type TName = {
 };
 
 export type TUser = {
+  id: string;
   name: TName;
   email: string;
   password: string;

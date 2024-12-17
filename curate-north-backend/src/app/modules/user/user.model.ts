@@ -25,6 +25,9 @@ const UserNameSchema = new Schema<TName>({
 
 const UserSchema = new Schema<TUser>(
   {
+    id: {
+      type: String,
+    },
     name: UserNameSchema,
     email: {
       type: String,

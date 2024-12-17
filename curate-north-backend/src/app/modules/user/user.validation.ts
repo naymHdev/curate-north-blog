@@ -20,16 +20,20 @@ const NameSchemaValidation = z.object({
 });
 
 // Define Zod schema for TUser
-export const UserSchemaValidation = z.object({
+const UserSchemaValidation = z.object({
+  id: z.string(),
   name: NameSchemaValidation,
   email: z
-    .string()
-    .email({ message: 'Invalid email format' })
-    .nonempty({ message: 'Email is required' }),
-  password: z.string().nonempty({ message: 'Password is required' }),
+    .string({ required_error: 'Email is required' })
+    .email({ message: 'Invalid email format' }),
+  password: z.string({ required_error: 'Password is required' }),
   needsPasswordChange: z.boolean().default(true),
   role: z.enum(['user', 'admin', 'editor', 'subscriber']).default('user'),
   status: z.enum(['green', 'yellow', 'red']).default('green'),
   profilePicture: z.string().optional(),
   isDeleted: z.boolean().default(false),
 });
+
+export const UserValidations = {
+  UserSchemaValidation,
+};
