@@ -1,5 +1,6 @@
 import { model, Schema } from 'mongoose';
 import { TName, TUser } from './user.interface';
+import { UserRole, UserStatus } from './user.constant';
 
 const UserNameSchema = new Schema<TName>({
   firstName: {
@@ -42,19 +43,25 @@ const UserSchema = new Schema<TUser>(
     },
     role: {
       type: String,
-      enum: ['user', 'admin', 'editor', 'subscriber'],
+      enum: {
+        values: UserRole,
+        message: '{VALUE} is not valid',
+      },
       default: 'user',
+      required: true,
     },
     status: {
       type: String,
-      enum: ['green', 'yellow', 'red'],
+      enum: {
+        values: UserStatus,
+        message: '{VALUE} is not valid!',
+      },
       default: 'green',
       required: true,
     },
-    profilePicture: { type: String, default: '' },
+    profilePicture: { type: String },
     isDeleted: {
       type: Boolean,
-      required: true,
       default: false,
     },
   },

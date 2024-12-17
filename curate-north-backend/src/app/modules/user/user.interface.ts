@@ -4,14 +4,17 @@ export type TName = {
   lastName: string;
 };
 
+export type TUserRole = 'user' | 'admin' | 'editor' | 'subscriber';
+export type TUserStatus = 'green' | 'yellow' | 'red';
+
 export type TUser = {
   id: string;
   name: TName;
   email: string;
   password: string;
   needsPasswordChange: boolean;
-  role: 'user' | 'admin' | 'editor' | 'subscriber';
-  status: 'green' | 'yellow' | 'red';
+  role: TUserRole;
+  status: TUserStatus;
   profilePicture: string;
   isDeleted: boolean;
 };
